@@ -4,32 +4,32 @@ using namespace std;
 
 bool isNumericConstant(string input)
 {
-    int count=0;
-    bool check= true;
-    for(int i=0; i<input.size(); i++)
+    int count = 0;
+    bool check = true;
+    for (int i = 0; i < input.size(); i++)
     {
-        if(input[i]=='0' || input[i]=='1'|| input[i]=='2'|| input[i]=='3'|| input[i]=='4'|| input[i]=='5'|| input[i]=='6'|| input[i]=='7'|| input[i]=='8'||input[i]=='9' && check ==true)
+        if ((input[i] == '-' && i == 0) || (input[i] >= '0' && input[i] <= '9'))
         {
-            check= true;
+            check = true;
         }
-        else if(input[i]=='.')
+        else if (input[i] == '.')
         {
             count++;
+            if (count > 1)
+            {
+                check = false;
+                break;
+            }
         }
         else
         {
-            check= false;
+            check = false;
             break;
         }
     }
-    if(count > 1)
-    {
-        check=false;
-        return check;
-    }
-    else
-        return check;
+    return check;
 }
+
 
 int main() {
     string input;
