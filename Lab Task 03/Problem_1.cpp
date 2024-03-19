@@ -1,4 +1,6 @@
 #include<iostream>
+#include<fstream>
+#include<string>
 using namespace std;
 
 bool isIdentifier(string input)
@@ -68,19 +70,38 @@ bool isCamelCase(string input)
 }
 int main()
 {
-    string input;
-    cout<<"Please Enter The input: ";
-    cin>>input;
-    if(isIdentifier(input))
-    {
-        cout<<"\nYour enter Input is Identifier"<<endl;
-        if(isCamelCase(input))
-        {
+     ofstream MyWriteFile("filename.txt");
+      MyWriteFile << "Fileugh\n";
+      MyWriteFile << "main\n";
+      MyWriteFile << "FiunEough\n";
+      MyWriteFile << "#unenough\n";
 
+
+      MyWriteFile.close();
+      string myText;
+      ifstream MyReadFile("filename.txt");
+      while (getline (MyReadFile, myText))
+      {
+        cout << myText<<endl;
+        if (isIdentifier(myText))
+        {
+            cout << "Your entered input is an identifier." << endl;
+            if (isCamelCase(myText))
+            {
+                cout << "Your entered input follows CamelCase convention." << endl;
+            }
+            else
+            {
+                cout << "Your entered input does not follow CamelCase convention." << endl;
+            }
+        }
+        else
+        {
+            cout << "Your entered input is not an identifier." << endl;
         }
     }
-    else
-    {
-        cout<<"It is not identifier"<<endl;
-    }
+
+    MyReadFile.close();
+
+    return 0;
 }
